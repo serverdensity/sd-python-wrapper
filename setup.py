@@ -28,7 +28,7 @@ setup(
     description="A python wrapper for the Server Density Api",
     long_description=readme + '\n\n', # + history,
     author="Jonathan Sundqvist",
-    author_email='jonathan@serverdensity.com',
+    author_email='hello@serverdensity.com',
     url='https://github.com/serverdensity/sd-python-wrapper',
     packages=[
         'serverdensity',

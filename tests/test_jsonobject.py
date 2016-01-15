@@ -3,6 +3,7 @@
 
 import unittest
 from serverdensity import JsonObject
+from serverdensity.api import ApiClient
 
 
 class JsonObjectTest(unittest.TestCase):
@@ -32,6 +33,7 @@ class JsonObjectTest(unittest.TestCase):
 
         self.TestObj = JsonObject
         self.TestObj._schemaobj = self.schema
+        self.client = ApiClient('aeou')
 
     def test_instantiate_empty_jsonobject(self):
         obj = self.TestObj()
@@ -83,6 +85,11 @@ class JsonObjectTest(unittest.TestCase):
         obj = self.TestObj(key='value')
         self.assertEqual(self.dummyschema, obj._schemaobj)
 
+    def test_initiate_with_apiclient(self):
+        self.TestObj._schemaobj = self.dummyschema
+        obj = self.TestObj(self.client, {'key': 'value'})
+        self.assertEqual(obj.key, 'value')
+        self.assertEqual(isinstance(obj.api, ApiClient), True)
 
 if __name__ == '__main__':
     import sys

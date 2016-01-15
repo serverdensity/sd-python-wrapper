@@ -27,19 +27,31 @@ class JsonObject(Mapping):
         'get'
     ]
 
+    _set_internally = [
+        'api',
+        '_data',
+        '_validator',
+        '_schemaobj'
+    ]
+
     _schemapath = ''
     _schemaobj = {}
     _validator = None
 
-    def __init__(self, *arrgs, **kwargs):
-        super().__init__()
+    def __init__(self, api=None, *arrgs, **kwargs):
         self._data = {}
+        if isinstance(api, dict):
+            kwargs.update(api)
+        else:
+            self.api = api
         if kwargs:
-            self._data = kwargs
+            self._data.update(kwargs)
             self._validation(kwargs)
-        elif arrgs:
-            self._data = arrgs[0]
-            self._validation(arrgs[0])
+        if arrgs:
+            for arg in arrgs:
+                if isinstance(arg, dict):
+                    self._data.update(arg)
+            self._validation(self._data)
 
     def _set_schemaobj(self, path):
         path = os.path.dirname(__file__) + self._schemapath
@@ -86,9 +98,8 @@ class JsonObject(Mapping):
         if name in self._protected:
             raise AttributeError('This is a protected property')
 
-        if name == '_data' or '_validator':
+        if name in self._set_internally:
             object.__setattr__(self, name, value)
-
-        if not name == '_data':
+        else:
             self._data[name] = value
             self._validation(self._data)

@@ -27,6 +27,7 @@ class ServiceStatusTest(unittest.TestCase):
         )
 
     def test_service_status_location(self):
+        self.client._make_request.return_value = [{'user': 'result'}]
         self.service_status.location(1)
         self.client._make_request.assert_called_with(
             data=None,

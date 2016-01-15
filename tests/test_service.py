@@ -37,6 +37,7 @@ class ServiceTest(unittest.TestCase):
         )
 
     def test_service_list(self):
+        self.client._make_request.return_value = [{'user': 'result'}]
         self.service.list()
         self.client._make_request.assert_called_with(
             data=None,
@@ -46,6 +47,7 @@ class ServiceTest(unittest.TestCase):
         )
 
     def test_service_search(self):
+        self.client._make_request.return_value = [{'user': 'result'}]
         filter_data = {'name': 'test', 'type': 'service'}
         self.service.search(filtering=filter_data)
         self.client._make_request.assert_called_with(

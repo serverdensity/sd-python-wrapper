@@ -15,4 +15,5 @@ class ServiceStatus(object):
         return Response(self.api.get(url=self.PATHS['overall'].format(_id), **kwargs))
 
     def location(self, _id, **kwargs):
-        return Response(self.api.get(url=self.PATHS['location'].format(_id), **kwargs))
+        result = self.api.get(url=self.PATHS['location'].format(_id), **kwargs)
+        return [Response(item) for item in result]

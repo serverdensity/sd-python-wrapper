@@ -23,11 +23,13 @@ class Device(object):
         return Response(self.api.delete(url=self.PATHS['delete'].format(_id), **kwargs))
 
     def list(self, **kwargs):
-        return Response(self.api.get(url=self.PATHS['list'], **kwargs))
+        result = self.api.get(url=self.PATHS['list'], **kwargs)
+        return [Response(item) for item in result]
 
     def search(self, filtering, **kwargs):
         kwargs.setdefault('params', {})['filter'] = filtering
-        return Response(self.api.get(url=self.PATHS['search'], **kwargs))
+        result = self.api.get(url=self.PATHS['search'], **kwargs)
+        return [Response(item) for item in result]
 
     def update(self, _id, data, **kwargs):
         return Response(self.api.put(url=self.PATHS['update'].format(_id), data=data, **kwargs))

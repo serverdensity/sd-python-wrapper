@@ -25,14 +25,15 @@ class Alert(object):
         return Response(self.api.delete(url=self.PATHS['delete'].format(_id), **kwargs))
 
     def list(self, **kwargs):
-        return Response(self.api.get(url=self.PATHS['list'], **kwargs))
+        result = self.api.get(url=self.PATHS['list'], **kwargs)
+        return [Response(item) for item in result]
 
     def list_by_subject(self, subject_id, subject_type, **kwargs):
         kwargs.setdefault('params', {})['subjectType'] = subject_type
-        return Response(self.api.get(
-            url=self.PATHS['list_by_subject'].format(subject_id),
-            **kwargs
-        ))
+        result = self.api.get(
+            url=self.PATHS['list_by_subject'].format(subject_id), **kwargs
+        )
+        return [Response(item) for item in result]
 
     def update(self, _id, data, **kwargs):
         return Response(self.api.put(url=self.PATHS['update'].format(_id), data=data, **kwargs))
@@ -48,7 +49,8 @@ class Alert(object):
             url = self.PATHS
         if closed:
             kwargs.setdefault('params', {})['closed'] = closed
-        return Response(self.api.get(url=url, **kwargs))
+        result = self.api.get(url=url, **kwargs)
+        return [Response(item) for item in result]
 
     def device_metrics(self, **kwargs):
         return Response(self.api.get(url=self.PATHS['device_metrics'], **kwargs))

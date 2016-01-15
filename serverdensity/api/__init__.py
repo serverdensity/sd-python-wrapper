@@ -7,3 +7,4 @@ from serverdensity.api.service_status import ServiceStatus
 from serverdensity.api.user import User
 from serverdensity.api.postback import Postback
 from serverdensity.api.dashboard import Dashboard
+from serverdensity.api.crud import CRUD

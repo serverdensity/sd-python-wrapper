@@ -1,7 +1,8 @@
 from serverdensity import Response
+from serverdensity.api.crud import CRUD
 
 
-class Widget(object):
+class Widget(CRUD):
 
     PATHS = {
         'create': '/users/widgets',
@@ -14,22 +15,6 @@ class Widget(object):
 
     def __init__(self, api):
         self.api = api
-
-    def create(self, data, **kwargs):
-        return Response(self.api.post(url=self.PATHS['create'], data=data, **kwargs))
-
-    def delete(self, _id, **kwargs):
-        return Response(self.api.delete(url=self.PATHS['delete'].format(_id), **kwargs))
-
-    def list(self, **kwargs):
-        result = self.api.get(url=self.PATHS['list'], **kwargs)
-        return [Response(item) for item in result]
-
-    def update(self, _id, data, **kwargs):
-        return Response(self.api.put(url=self.PATHS['update'].format(_id), data=data, **kwargs))
-
-    def view(self, _id, **kwargs):
-        return Response(self.api.get(url=self.PATHS['view'].format(_id), **kwargs))
 
     def duplicate(self, _id, **kwargs):
         return Response(self.api.post(url=self.PATHS['duplicate'].format(_id)))

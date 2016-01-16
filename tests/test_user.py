@@ -4,18 +4,25 @@
 import unittest
 
 from mock import patch
+from tests.basetest import BaseTest
 from serverdensity.api import ApiClient
 from serverdensity.api import User
 
 
-class UserTest(unittest.TestCase):
+class UserTest(BaseTest):
 
     @patch.object(ApiClient, '_make_request')
     def setUp(self, mock_make_request):
+        self.userobj = self.get_json('/json/user.json')
+
         self.client = ApiClient('aeou')
         self.client._make_request = mock_make_request
-        self.client._make_request.return_value = {'user': 'result'}
+        self.client._make_request.return_value = self.userobj
         self.user = User(api=self.client)
+
+    def test_userobject_with_data(self):
+        user = User(self.client, self.userobj)
+        self.assertEqual(self.userobj['_id'], user._id)
 
     def test_user_create(self):
         data = {'data': 'user'}
@@ -37,7 +44,7 @@ class UserTest(unittest.TestCase):
         )
 
     def test_user_list(self):
-        self.client._make_request.return_value = [{'user': 'result'}]
+        self.client._make_request.return_value = [self.userobj]
         self.user.list()
         self.client._make_request.assert_called_with(
             data=None,

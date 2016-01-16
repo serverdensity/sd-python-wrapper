@@ -1,7 +1,10 @@
 from serverdensity.api.crud import CRUD
+from serverdensity.api.jsonobject import JsonObject
 
 
-class User(CRUD):
+class User(JsonObject, CRUD):
+
+    _schemapath = '/schema/users.json'
 
     PATHS = {
         'create': '/users/users',
@@ -10,6 +13,3 @@ class User(CRUD):
         'update': '/users/users/{}',
         'view': '/users/users/{}'
     }
-
-    def __init__(self, api):
-        self.api = api

@@ -77,6 +77,9 @@ class JsonObject(Mapping):
     def __len__(self):
         return len(self._data)
 
+    def __repr__(self):
+        return str(self._data)
+
     def __getitem__(self, key):
         return self._data[key]
 

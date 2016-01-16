@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import unittest
-from serverdensity import JsonObject
+from serverdensity.api import JsonObject
 from serverdensity.api import ApiClient
 
 
@@ -81,7 +81,7 @@ class JsonObjectTest(unittest.TestCase):
 
     def test_set_schemaobj_fetches_json_originating_from_file(self):
         self.TestObj._schemaobj = None
-        self.TestObj._schemapath = '/api/schema/testschema.json'
+        self.TestObj._schemapath = '/schema/testschema.json'
         obj = self.TestObj(key='value')
         self.assertEqual(self.dummyschema, obj._schemaobj)
 
@@ -90,6 +90,16 @@ class JsonObjectTest(unittest.TestCase):
         obj = self.TestObj(self.client, {'key': 'value'})
         self.assertEqual(obj.key, 'value')
         self.assertEqual(isinstance(obj.api, ApiClient), True)
+
+    def test_setting_a_token_instantiates_an_apiclient(self):
+        obj = self.TestObj('b97da80a41c4f61bff05975ee51eb1aa')
+        self.assertEqual(isinstance(obj.api, ApiClient), True)
+
+    def test_set_random_private_property_without_validation_check(self):
+        obj = self.TestObj()
+        obj._random = 'random data'
+        self.assertEqual(obj._random, 'random data')
+
 
 if __name__ == '__main__':
     import sys

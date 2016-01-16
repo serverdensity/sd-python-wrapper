@@ -8,6 +8,8 @@ from jsonschema.compat import str_types
 from jsonschema.exceptions import ValidationError
 from bson.objectid import ObjectId
 
+import serverdensity
+
 
 @FormatChecker.cls_checks(format='mongoId', raises=())
 def is_mongoid(instance):
@@ -28,15 +30,13 @@ class JsonObject(Mapping):
     ]
 
     _set_internally = [
-        'api',
-        '_data',
-        '_validator',
-        '_schemaobj'
+        'api'
     ]
 
     _schemapath = ''
     _schemaobj = {}
     _validator = None
+    _api = None
 
     def __init__(self, api=None, *arrgs, **kwargs):
         self._data = {}
@@ -52,6 +52,21 @@ class JsonObject(Mapping):
                 if isinstance(arg, dict):
                     self._data.update(arg)
             self._validation(self._data)
+
+    @property
+    def api(self):
+        return self._api
+
+    @api.setter
+    def api(self, value):
+        if isinstance(value, serverdensity.api.ApiClient):
+            self._api = value
+        elif isinstance(value, str):
+            self._api = serverdensity.api.ApiClient(value)
+        elif value is None:
+            self._api = None
+        else:
+            raise TypeError("Must either be a token or an ApiClient")
 
     def _set_schemaobj(self, path):
         path = os.path.dirname(__file__) + self._schemapath
@@ -101,7 +116,7 @@ class JsonObject(Mapping):
         if name in self._protected:
             raise AttributeError('This is a protected property')
 
-        if name in self._set_internally:
+        if name in self._set_internally or name[0] == '_':
             object.__setattr__(self, name, value)
         else:
             self._data[name] = value

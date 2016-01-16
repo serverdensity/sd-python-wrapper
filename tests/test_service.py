@@ -4,17 +4,21 @@
 import unittest
 
 from mock import patch
+from tests.basetest import BaseTest
+
 from serverdensity.api import ApiClient
 from serverdensity.api import Service
 
 
-class ServiceTest(unittest.TestCase):
+class ServiceTest(BaseTest):
 
     @patch.object(ApiClient, '_make_request')
     def setUp(self, mock_make_request):
+        self.serviceobj = self.get_json('/json/service.json')
+
         self.client = ApiClient('aeou')
         self.client._make_request = mock_make_request
-        self.client._make_request.return_value = {'service': 'result'}
+        self.client._make_request.return_value = self.serviceobj
         self.service = Service(api=self.client)
 
     def test_service_create(self):
@@ -37,7 +41,7 @@ class ServiceTest(unittest.TestCase):
         )
 
     def test_service_list(self):
-        self.client._make_request.return_value = [{'user': 'result'}]
+        self.client._make_request.return_value = [self.serviceobj]
         self.service.list()
         self.client._make_request.assert_called_with(
             data=None,
@@ -47,7 +51,7 @@ class ServiceTest(unittest.TestCase):
         )
 
     def test_service_search(self):
-        self.client._make_request.return_value = [{'user': 'result'}]
+        self.client._make_request.return_value = [self.serviceobj]
         filter_data = {'name': 'test', 'type': 'service'}
         self.service.search(filtering=filter_data)
         self.client._make_request.assert_called_with(

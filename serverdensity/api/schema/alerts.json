@@ -12,7 +12,7 @@
             "enum": ["device", "service"]
         },
         "subject": {
-            "type": "string"
+            "type": ["string", "null"]
         },
         "enabled": {
             "type": "boolean"
@@ -53,7 +53,14 @@
                         "type": "array",
                         "items": {
                             "type": "string",
-                            "enum": ["pagerduty", "webhook", "slack", "hipchat"]
+                            "enum": [
+                                "pagerduty",
+                                "webhook",
+                                "slack",
+                                "hipchat",
+                                "sms",
+                                "email"
+                            ]
                         }
                     }
                 },

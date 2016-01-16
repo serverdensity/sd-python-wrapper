@@ -6,15 +6,17 @@ import unittest
 from mock import patch
 from serverdensity.api import ApiClient
 from serverdensity.api import Device
+from tests.basetest import BaseTest
 
-
-class DeviceTest(unittest.TestCase):
+class DeviceTest(BaseTest):
 
     @patch.object(ApiClient, '_make_request')
     def setUp(self, mock_make_request):
+        self.deviceobj = self.get_json('/json/device.json')
+
         self.client = ApiClient('aeou')
         self.client._make_request = mock_make_request
-        self.client._make_request.return_value = {'device': 'result'}
+        self.client._make_request.return_value = self.deviceobj
         self.device = Device(api=self.client)
 
     def test_device_create(self):
@@ -37,7 +39,7 @@ class DeviceTest(unittest.TestCase):
         )
 
     def test_device_list(self):
-        self.client._make_request.return_value = [{'user': 'result'}]
+        self.client._make_request.return_value = [self.deviceobj]
         self.device.list()
         self.client._make_request.assert_called_with(
             data=None,
@@ -47,7 +49,7 @@ class DeviceTest(unittest.TestCase):
         )
 
     def test_device_search(self):
-        self.client._make_request.return_value = [{'user': 'result'}]
+        self.client._make_request.return_value = [self.deviceobj]
         filter_data = {'name': 'test', 'type': 'device'}
         self.device.search(filtering=filter_data)
         self.client._make_request.assert_called_with(

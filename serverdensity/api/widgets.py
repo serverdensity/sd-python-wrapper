@@ -1,8 +1,8 @@
-from serverdensity import Response
+from serverdensity.api.jsonobject import JsonObject
 from serverdensity.api.crud import CRUD
 
 
-class Widget(CRUD):
+class Widget(JsonObject, CRUD):
 
     PATHS = {
         'create': '/users/widgets',
@@ -13,8 +13,7 @@ class Widget(CRUD):
         'duplicate': '/users/widgets/duplicate/{}'
     }
 
-    def __init__(self, api):
-        self.api = api
-
-    def duplicate(self, _id, **kwargs):
-        return Response(self.api.post(url=self.PATHS['duplicate'].format(_id)))
+    def duplicate(self, _id=None, **kwargs):
+        if not _id:
+            _id = self._id
+        return self.__class__(self.api.post(url=self.PATHS['duplicate'].format(_id)))

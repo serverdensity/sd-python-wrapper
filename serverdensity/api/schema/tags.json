@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Dashboards",
+    "title": "Tags",
     "type": "object",
     "properties": {
         "name": {

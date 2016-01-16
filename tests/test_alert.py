@@ -6,15 +6,18 @@ import unittest
 from mock import patch
 from serverdensity.api import ApiClient
 from serverdensity.api import Alert
+from tests.basetest import BaseTest
 
 
-class AlertTest(unittest.TestCase):
+class AlertTest(BaseTest):
 
     @patch.object(ApiClient, '_make_request')
     def setUp(self, mock_make_request):
+        self.alertobj = self.get_json('/json/alert.json')
+
         self.client = ApiClient('aeou')
         self.client._make_request = mock_make_request
-        self.client._make_request.return_value = {'alert': 'result'}
+        self.client._make_request.return_value = self.alertobj
         self.alert = Alert(api=self.client)
 
     def test_alert_create(self):
@@ -37,7 +40,7 @@ class AlertTest(unittest.TestCase):
         )
 
     def test_alert_list(self):
-        self.client._make_request.return_value = [{'user': 'result'}]
+        self.client._make_request.return_value = [self.alertobj]
         self.alert.list()
         self.client._make_request.assert_called_with(
             data=None,
@@ -66,7 +69,7 @@ class AlertTest(unittest.TestCase):
         )
 
     def test_alert_triggered(self):
-        self.client._make_request.return_value = [{'user': 'result'}]
+        self.client._make_request.return_value = [self.alertobj]
         self.alert.triggered(1, 'device', True)
         self.client._make_request.assert_called_with(
             data=None,

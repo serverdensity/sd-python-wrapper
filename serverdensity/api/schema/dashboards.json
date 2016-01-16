@@ -25,7 +25,8 @@
                     "required": ["col", "row", "size_x"]
                 }
             }
-        },
+        }
+    },
     "required": [
         "name"
     ]

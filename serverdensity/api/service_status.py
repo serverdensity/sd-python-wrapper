@@ -1,19 +1,20 @@
-from serverdensity import Response
+from serverdensity.api.jsonobject import JsonObject
 
 
-class ServiceStatus(object):
+class ServiceStatus(JsonObject):
 
     PATHS = {
         'overall': '/service-monitor/meta/{}',
         'location': '/service-monitor/last/{}'
     }
 
-    def __init__(self, api):
-        self.api = api
+    def _validation(self, data):
+        """Service Status has no post endpoints and need no validation"""
+        pass
 
     def overall(self, _id, **kwargs):
-        return Response(self.api.get(url=self.PATHS['overall'].format(_id), **kwargs))
+        return self.__class__(self.api.get(url=self.PATHS['overall'].format(_id), **kwargs))
 
     def location(self, _id, **kwargs):
         result = self.api.get(url=self.PATHS['location'].format(_id), **kwargs)
-        return [Response(item) for item in result]
+        return [self.__class__(item) for item in result]

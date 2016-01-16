@@ -1,7 +1,11 @@
 from serverdensity import Response
 from serverdensity.api.crud import CRUD
+from serverdensity.api.jsonobject import JsonObject
 
-class Alert(CRUD):
+
+class Alert(JsonObject, CRUD):
+
+    _schemapath = '/schema/alerts.json'
 
     PATHS = {
         'create': '/alerts/configs',
@@ -15,9 +19,6 @@ class Alert(CRUD):
         'service_metrics': '/alerts/service_alerts.json'
     }
 
-    def __init__(self, api):
-        self.api = api
-
     def triggered(self, _id=None, subject_type=None, closed=None, **kwargs):
         if _id and subject_type:
             url = self.PATHS['triggered'] + '/{}'.format(_id)
@@ -27,7 +28,7 @@ class Alert(CRUD):
         if closed:
             kwargs.setdefault('params', {})['closed'] = closed
         result = self.api.get(url=url, **kwargs)
-        return [Response(item) for item in result]
+        return [self.__class__(item) for item in result]
 
     def device_metrics(self, **kwargs):
         return Response(self.api.get(url=self.PATHS['device_metrics'], **kwargs))

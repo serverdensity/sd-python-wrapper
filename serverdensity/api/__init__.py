@@ -8,3 +8,4 @@ from serverdensity.api.user import User
 from serverdensity.api.postback import Postback
 from serverdensity.api.dashboard import Dashboard
 from serverdensity.api.crud import CRUD
+from serverdensity.api.jsonobject import JsonObject

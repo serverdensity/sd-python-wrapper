@@ -37,6 +37,7 @@ class DeviceTest(unittest.TestCase):
         )
 
     def test_device_list(self):
+        self.client._make_request.return_value = [{'user': 'result'}]
         self.device.list()
         self.client._make_request.assert_called_with(
             data=None,
@@ -46,6 +47,7 @@ class DeviceTest(unittest.TestCase):
         )
 
     def test_device_search(self):
+        self.client._make_request.return_value = [{'user': 'result'}]
         filter_data = {'name': 'test', 'type': 'device'}
         self.device.search(filtering=filter_data)
         self.client._make_request.assert_called_with(

@@ -37,6 +37,7 @@ class AlertTest(unittest.TestCase):
         )
 
     def test_alert_list(self):
+        self.client._make_request.return_value = [{'user': 'result'}]
         self.alert.list()
         self.client._make_request.assert_called_with(
             data=None,
@@ -65,6 +66,7 @@ class AlertTest(unittest.TestCase):
         )
 
     def test_alert_triggered(self):
+        self.client._make_request.return_value = [{'user': 'result'}]
         self.alert.triggered(1, 'device', True)
         self.client._make_request.assert_called_with(
             data=None,

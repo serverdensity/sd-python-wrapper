@@ -37,6 +37,7 @@ class DashboardTest(unittest.TestCase):
         )
 
     def test_dashboard_list(self):
+        self.client._make_request.return_value = [{'user': 'result'}]
         self.dashboard.list()
         self.client._make_request.assert_called_with(
             data=None,

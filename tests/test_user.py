@@ -37,6 +37,7 @@ class UserTest(unittest.TestCase):
         )
 
     def test_user_list(self):
+        self.client._make_request.return_value = [{'user': 'result'}]
         self.user.list()
         self.client._make_request.assert_called_with(
             data=None,

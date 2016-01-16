@@ -34,7 +34,5 @@ class Response(dict):
         for key, value in root_dict.items():
             if isinstance(value, dict):
                 root_dict[key] = Response(value)
-            elif isinstance(value, list):
-                root_dict[key] = [Response(item) for item in value]
 
         return root_dict

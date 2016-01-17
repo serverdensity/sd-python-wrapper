@@ -1,17 +1,19 @@
 from hashlib import md5
 import json
 
+from serverdensity.api import JsonObject
 from serverdensity import Response
 
 
-class Postback(object):
+class Postback(JsonObject):
 
     PATHS = {
         'create': '/alerts/postbacks',
     }
 
-    def __init__(self, api):
-        self.api = api
+    def _validation(self, data):
+        """Not Needed"""
+        pass
 
     def create(self, payload, account_name, **kwargs):
         kwargs.setdefault('headers', {})['X-Forwarded-Host'] = account_name + '.serverdensity.io'

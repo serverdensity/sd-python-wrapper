@@ -1,15 +1,17 @@
+from serverdensity.api import JsonObject
 from serverdensity import Response
 
 
-class Metrics(object):
+class Metrics(JsonObject):
 
     PATHS = {
         'available': '/metrics/definitions/{}',
         'get': '/metrics/graphs/{}'
     }
 
-    def __init__(self, api):
-        self.api = api
+    def _validation(self, value):
+        """Not needed"""
+        pass
 
     def available(self, _id, start, end, **kwargs):
         kwargs.setdefault('params', {})['start'] = start.isoformat()

@@ -10,13 +10,16 @@ from requests import Session
 import requests
 
 from serverdensity.api import ApiClient
-from serverdensity.api import Device
-from serverdensity.api import Service
 from serverdensity.api import Alert
-from serverdensity.api import ServiceStatus
-from serverdensity.api import User
-from serverdensity.api import Postback
+from serverdensity.api import Device
 from serverdensity.api import Dashboard
+from serverdensity.api import Metrics
+from serverdensity.api import Postback
+from serverdensity.api import Service
+from serverdensity.api import ServiceStatus
+from serverdensity.api import Tags
+from serverdensity.api import User
+
 from serverdensity.api.exceptions import HttpError
 from serverdensity.api.exceptions import TimeoutError
 from serverdensity.api.exceptions import ClientError
@@ -80,6 +83,12 @@ class ApiTest(unittest.TestCase):
 
     def test_postbacks_property(self):
         isinstance(self.client.postbacks, Postback)
+
+    def test_tags_property(self):
+        isinstance(self.client.postbacks, Tags)
+
+    def test_metrics_property(self):
+        isinstance(self.client.postbacks, Metrics)
 
 
 if __name__ == '__main__':

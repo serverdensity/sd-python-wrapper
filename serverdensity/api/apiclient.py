@@ -39,34 +39,28 @@ class ApiClient(object):
 
 
     @property
-    def devices(self):
-        if not self._devices:
-            self._devices = Device(api=self)
-        return self._devices
-
-    @property
-    def services(self):
-        if not self._services:
-            self._services = Service(api=self)
-        return self._services
-
-    @property
     def alerts(self):
         if not self._alerts:
             self._alerts = Alert(api=self)
         return self._alerts
 
     @property
-    def service_status(self):
-        if not self._service_status:
-            self._service_status = ServiceStatus(api=self)
-        return self._service_status
+    def devices(self):
+        if not self._devices:
+            self._devices = Device(api=self)
+        return self._devices
 
     @property
-    def users(self):
-        if not self._users:
-            self._users = User(api=self)
-        return self._users
+    def dashboards(self):
+        if not self._dashboards:
+            self._dashboards = Dashboard(api=self)
+        return self._dashboards
+
+    @property
+    def metrics(self):
+        if not self._metrics:
+            self._metrics = Metrics(api=self)
+        return self._metrics
 
     @property
     def postbacks(self):
@@ -75,10 +69,31 @@ class ApiClient(object):
         return self._postbacks
 
     @property
-    def dashboards(self):
-        if not self._dashboards:
-            self._dashboards = Dashboard(api=self)
-        return self._dashboards
+    def services(self):
+        if not self._services:
+            self._services = Service(api=self)
+        return self._services
+
+    @property
+    def service_status(self):
+        if not self._service_status:
+            self._service_status = ServiceStatus(api=self)
+        return self._service_status
+
+    @property
+    def tags(self):
+        if not self._tags:
+            self._tags = Tags(api=self)
+        return self._tags
+
+    @property
+    def users(self):
+        if not self._users:
+            self._users = User(api=self)
+        return self._users
+
+
+
 
     def _stringify_dict_list(self, data):
         for key, value in data.items():

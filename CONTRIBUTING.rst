@@ -108,6 +108,6 @@ Before you submit a pull request, check that it meets these guidelines:
 Tips
 ----
 
-To run a subset of tests::
+To run a subset of tests, in this case the tests for the user endpoint::
 
-    $ python -m unittest tests.test_sd-python-wrapper
+    $ python -m unittest tests.test_user

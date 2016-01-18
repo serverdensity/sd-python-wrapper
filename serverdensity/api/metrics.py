@@ -1,4 +1,4 @@
-from serverdensity.api import JsonObject
+from serverdensity.api.jsonobject import JsonObject
 from serverdensity import Response
 
 

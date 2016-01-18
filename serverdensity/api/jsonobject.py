@@ -55,6 +55,8 @@ class JsonObject(Mapping):
 
     @property
     def api(self):
+        if not self._api:
+            raise AttributeError()
         return self._api
 
     @api.setter
@@ -66,7 +68,7 @@ class JsonObject(Mapping):
         elif value is None:
             self._api = None
         else:
-            raise TypeError("Must either be a token or an ApiClient")
+            raise TypeError('Must either be a token or an ApiClient')
 
     def _set_schemaobj(self, path):
         path = os.path.dirname(__file__) + self._schemapath

@@ -100,6 +100,11 @@ class JsonObjectTest(unittest.TestCase):
         obj._random = 'random data'
         self.assertEqual(obj._random, 'random data')
 
+    def test_raise_attribute_error_if_api_is_none(self):
+        obj = self.TestObj()
+        with self.assertRaises(AttributeError):
+            obj.api.create()
+
 
 if __name__ == '__main__':
     import sys

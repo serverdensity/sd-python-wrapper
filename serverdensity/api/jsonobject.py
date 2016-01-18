@@ -56,7 +56,7 @@ class JsonObject(Mapping):
     @property
     def api(self):
         if not self._api:
-            raise AttributeError()
+            raise TypeError('Token or ApiClient must be set to use the Api')
         return self._api
 
     @api.setter

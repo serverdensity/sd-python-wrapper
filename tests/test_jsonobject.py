@@ -102,7 +102,7 @@ class JsonObjectTest(unittest.TestCase):
 
     def test_raise_attribute_error_if_api_is_none(self):
         obj = self.TestObj()
-        with self.assertRaises(AttributeError):
+        with self.assertRaises(TypeError):
             obj.api.create()
 
 

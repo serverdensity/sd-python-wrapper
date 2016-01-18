@@ -21,12 +21,7 @@ class ResponseTest(unittest.TestCase):
         response = Response(self.data)
         self.assertEqual(response.data.some_more, 'result')
 
-    @unittest.skip('not implemented')
-    def test_response_cant_have_property_with_existing_method(self):
-        self.data['_existing_method'] = 'test'
-        with self.assertRaises(ValueError):
-            response = Response(self.data)
-
+    @unittest.skip('Removed functionality')
     def test_response_contains_a_list_of_response_objects(self):
         data = {'data': [{'1': 'a'}, {'2': 'b'}]}
         response = Response(data)

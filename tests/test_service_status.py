@@ -4,8 +4,8 @@
 import unittest
 
 from mock import patch
-from serverdensity.api import ApiClient
-from serverdensity.api import ServiceStatus
+from serverdensity.wrapper import ApiClient
+from serverdensity.wrapper import ServiceStatus
 
 
 class ServiceStatusTest(unittest.TestCase):

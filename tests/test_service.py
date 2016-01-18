@@ -6,8 +6,8 @@ import unittest
 from mock import patch
 from tests.basetest import BaseTest
 
-from serverdensity.api import ApiClient
-from serverdensity.api import Service
+from serverdensity.wrapper import ApiClient
+from serverdensity.wrapper import Service
 
 
 class ServiceTest(BaseTest):

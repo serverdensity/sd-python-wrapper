@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import unittest
-from serverdensity.api import JsonObject
-from serverdensity.api import ApiClient
+from serverdensity.wrapper import JsonObject
+from serverdensity.wrapper import ApiClient
 
 
 class JsonObjectTest(unittest.TestCase):

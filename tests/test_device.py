@@ -4,8 +4,8 @@
 import unittest
 
 from mock import patch
-from serverdensity.api import ApiClient
-from serverdensity.api import Device
+from serverdensity.wrapper import ApiClient
+from serverdensity.wrapper import Device
 from tests.basetest import BaseTest
 
 class DeviceTest(BaseTest):

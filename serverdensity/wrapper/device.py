@@ -1,5 +1,5 @@
-from serverdensity.api.jsonobject import JsonObject
-from serverdensity.api.crud import CRUD
+from serverdensity.wrapper.jsonobject import JsonObject
+from serverdensity.wrapper.crud import CRUD
 
 
 class Device(JsonObject, CRUD):

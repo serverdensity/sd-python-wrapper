@@ -1,7 +1,7 @@
 from hashlib import md5
 import json
 
-from serverdensity.api.jsonobject import JsonObject
+from serverdensity.wrapper.jsonobject import JsonObject
 from serverdensity import Response
 
 

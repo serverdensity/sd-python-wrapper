@@ -5,8 +5,8 @@ import unittest
 
 from mock import patch
 from tests.basetest import BaseTest
-from serverdensity.api import ApiClient
-from serverdensity.api import User
+from serverdensity.wrapper import ApiClient
+from serverdensity.wrapper import User
 
 
 class UserTest(BaseTest):

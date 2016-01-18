@@ -9,20 +9,20 @@ from requests import Response
 from requests import Session
 import requests
 
-from serverdensity.api import ApiClient
-from serverdensity.api import Alert
-from serverdensity.api import Device
-from serverdensity.api import Dashboard
-from serverdensity.api import Metrics
-from serverdensity.api import Postback
-from serverdensity.api import Service
-from serverdensity.api import ServiceStatus
-from serverdensity.api import Tags
-from serverdensity.api import User
+from serverdensity.wrapper import ApiClient
+from serverdensity.wrapper import Alert
+from serverdensity.wrapper import Device
+from serverdensity.wrapper import Dashboard
+from serverdensity.wrapper import Metrics
+from serverdensity.wrapper import Postback
+from serverdensity.wrapper import Service
+from serverdensity.wrapper import ServiceStatus
+from serverdensity.wrapper import Tags
+from serverdensity.wrapper import User
 
-from serverdensity.api.exceptions import HttpError
-from serverdensity.api.exceptions import TimeoutError
-from serverdensity.api.exceptions import ClientError
+from serverdensity.wrapper.exceptions import HttpError
+from serverdensity.wrapper.exceptions import TimeoutError
+from serverdensity.wrapper.exceptions import ClientError
 
 
 class ApiTest(unittest.TestCase):

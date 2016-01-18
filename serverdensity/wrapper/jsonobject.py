@@ -64,10 +64,10 @@ class JsonObject(Mapping):
 
     @api.setter
     def api(self, value):
-        if isinstance(value, serverdensity.api.ApiClient):
+        if isinstance(value, serverdensity.wrapper.ApiClient):
             self._api = value
         elif isinstance(value, str):
-            self._api = serverdensity.api.ApiClient(value)
+            self._api = serverdensity.wrapper.ApiClient(value)
         elif value is None:
             self._api = None
         else:

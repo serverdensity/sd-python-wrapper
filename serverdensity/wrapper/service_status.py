@@ -1,4 +1,4 @@
-from serverdensity.api.jsonobject import JsonObject
+from serverdensity.wrapper.jsonobject import JsonObject
 
 
 class ServiceStatus(JsonObject):

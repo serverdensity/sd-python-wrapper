@@ -6,8 +6,8 @@ from hashlib import md5
 import json
 
 from mock import patch
-from serverdensity.api import ApiClient
-from serverdensity.api import Postback
+from serverdensity.wrapper import ApiClient
+from serverdensity.wrapper import Postback
 
 
 class PostbackTest(unittest.TestCase):

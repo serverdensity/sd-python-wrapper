@@ -4,8 +4,8 @@
 import unittest
 
 from mock import patch
-from serverdensity.api import ApiClient
-from serverdensity.api import Dashboard
+from serverdensity.wrapper import ApiClient
+from serverdensity.wrapper import Dashboard
 from tests.basetest import BaseTest
 
 class DashboardTest(BaseTest):

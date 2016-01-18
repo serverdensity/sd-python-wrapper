@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 import unittest
 from mock import patch
-from serverdensity.api import ApiClient
-from serverdensity.api import Alert
+from serverdensity.wrapper import ApiClient
+from serverdensity.wrapper import Alert
 from tests.basetest import BaseTest
 
 

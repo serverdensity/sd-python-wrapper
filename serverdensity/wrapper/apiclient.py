@@ -4,17 +4,17 @@ import json
 from requests import Session, Request
 import requests
 from serverdensity import __version__
-from serverdensity.api.exceptions import HttpError
-from serverdensity.api.exceptions import TimeoutError
-from serverdensity.api.exceptions import ClientError
+from serverdensity.wrapper.exceptions import HttpError
+from serverdensity.wrapper.exceptions import TimeoutError
+from serverdensity.wrapper.exceptions import ClientError
 
-from serverdensity.api.device import Device
-from serverdensity.api.service import Service
-from serverdensity.api.alert import Alert
-from serverdensity.api.user import User
-from serverdensity.api.postback import Postback
-from serverdensity.api.dashboard import Dashboard
-from serverdensity.api.service_status import ServiceStatus
+from serverdensity.wrapper.device import Device
+from serverdensity.wrapper.service import Service
+from serverdensity.wrapper.alert import Alert
+from serverdensity.wrapper.user import User
+from serverdensity.wrapper.postback import Postback
+from serverdensity.wrapper.dashboard import Dashboard
+from serverdensity.wrapper.service_status import ServiceStatus
 
 
 class ApiClient(object):

@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 import unittest
-
 from mock import patch
 from serverdensity.api import ApiClient
 from serverdensity.api import Alert

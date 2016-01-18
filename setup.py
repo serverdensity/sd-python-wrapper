@@ -39,11 +39,8 @@ setup(
     author="Jonathan Sundqvist",
     author_email='hello@serverdensity.com',
     url='https://github.com/serverdensity/sd-python-wrapper',
-    packages=[
-        'serverdensity',
-    ],
-    # package_dir={'serverdensity':
-    #             'sd-python-wrapper'},
+    package_dir={'serverdensity':
+                 'serverdensity'},
     include_package_data=True,
     install_requires=requirements,
     license="MIT",

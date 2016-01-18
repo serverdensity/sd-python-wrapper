@@ -49,13 +49,14 @@ lint:
 	flake8 sd-python-wrapper tests
 
 test:
+	$(shell export PYTHONPATH=$PYTHONPATH:$(pwd))
 	python setup.py test
 
 test-all:
 	tox
 
 coverage:
-	coverage run --source sd-python-wrapper setup.py test
+	coverage run --source serverdensity setup.py test
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html

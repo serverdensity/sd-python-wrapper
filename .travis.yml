@@ -31,4 +31,4 @@ env:
 install: pip install -r requirements.txt
 language: python
 script:
-- tox
+- python setup.py test

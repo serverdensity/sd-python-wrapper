@@ -9,15 +9,20 @@ deploy:
     secure: VaB/ixQI8zwVWLqDBADKsGFMiwRvbXC80AVU5Ygnx18pBmQhR3nXplV0mOItc99TDiyWbQNsB2P+sfply1iij9vqC0VYowU6RmFnxfbBxu/nhc8Tjno9q04KO4CwOk8T1aCVurv2tu9UAEmUk1NrUiuiILl1xGKSNcY0BXeTQFazUWNLqBpsgEGj8Q2i1LSoWg+HRDMf6wXLDYxCgLXkSv3puFjLm+qnHaO1b7J9lM9jgABNvXYaoa6QpxDic50fj6OY7rMa10i398Kq2kK3+tOCF8+BLWms9f8jgRPQep+VeEsdbbB3l6lUU90yAbnqHTfwiSdLoZkH9dE0DOTb3ty+BTWO8Jr7W7Xm6ilLt35/92M/joiMbkmXd8yb1PRkNuVdDno8xP4Y6mSCjnaPdjS2rM9yXT47hXSrpx/qD1QbLsNbY1zx8AUbe9PsR7Q+eofgXXc7b6ES5yq6dtqtR9GrCwA06xIY792RYs/XkTCrzqDC/1ke2gm/AAluReu2DrXGgevVsZCJFZIfquznXRFG+f1ulm7lbOavjh56Lvd+VsqIFKAtFOW0osN/PBslf1tiApYou5xhgUuKarO/58CXCqqroPpUKoR8lKdqe+OZtPsC1+9Zy6XDceZIhg97skJlhocveao+oNXWmf73wVJzu11jZIdv/9pW5zPYolw=
   provider: pypi
   user: serverdensity
-env:
-- TOXENV=py35
-- TOXENV=py34
-- TOXENV=py33
-- TOXENV=py27
-- TOXENV=py26
-- TOXENV=pypy
 install:
 - pip install -r requirements.txt
 language: python
+matrix:
+    include:
+        - python: 3.5.0
+          env: TOXENV=py35
+        - python: 3.4.3
+          env: TOXENV=py34
+        - python: 3.3.5
+          env: TOXENV=py33
+        - python: 2.7.10
+          env: TOXENV=py27
+        - python: 2.6.9
+          env: TOXENV=py26
 script:
 - make test

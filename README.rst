@@ -14,10 +14,31 @@ A python wrapper for the Server Density Api
 * Free software: MIT license
 * Documentation: https://apidocs.serverdensity.com/
 
-Features
---------
+Up and running
+--------------
 
-* TODO
+There are two ways of using the api wrapper. Either calling the endpoints from an instance of :code:`ApiClient` or from an instance of the class of an endpoint such as :code:`Device`.
+
+.. code-block:: python
+
+    from serverdensity.wrapper import ApiClient
+    from serverdensity.wrapper import Device
+
+    token = '2dfae5bf81f65492a40569d39b29ffa3'
+
+    client = ApiClient(token)
+    device = client.devices.create(data={'name': 'testdevice'})
+
+
+    # instead of keyword arguments, it can also take a dictionary.
+    device2 = Device(token, name='name2')
+    device2.create()
+
+    # This will create an AttributeError, since name is required to create a
+    # device at some point.
+    device3 = Device(token, group='testgroup')
+
+
 
 Credits
 ---------

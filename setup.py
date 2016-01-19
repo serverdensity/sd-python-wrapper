@@ -32,7 +32,7 @@ test_requirements = [
 ]
 
 setup(
-    name='Python Wrapper for Server Density',
+    name='sd-python-wrapper',
     version='0.1.0',
     description="A python wrapper for the Server Density Api",
     long_description=readme + '\n\n', # + history,

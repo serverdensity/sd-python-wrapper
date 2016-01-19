@@ -10,6 +10,7 @@ Server Density Python Wrapper
 
 
 A python wrapper for the Server Density Api
+It runs on both python 2.7 and up to python 3.5
 
 * Free software: MIT license
 * Documentation: https://apidocs.serverdensity.com/

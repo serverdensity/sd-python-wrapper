@@ -33,19 +33,26 @@ test_requirements = [
 
 setup(
     name='sd-python-wrapper',
-    version='0.1.4',
+    version='0.1.10',
     description="A python wrapper for the Server Density Api",
     long_description=readme + '\n\n', # + history,
     author="Jonathan Sundqvist",
     author_email='hello@serverdensity.com',
     url='https://github.com/serverdensity/sd-python-wrapper',
-    py_modules=[
+    packages=[
         'serverdensity',
         'serverdensity.wrapper',
-        'serverdensity.response'
+        'response',
+        'schema'
     ],
-    # package_dir={'serverdensity':
-    #              'serverdensity'},
+    package_dir={
+        'response': 'serverdensity',
+        'schema': 'serverdensity'
+    },
+    package_data={
+        'schema': ['wrapper/schema/*.json'],
+        'response': ['response.py']
+    },
     include_package_data=True,
     install_requires=requirements,
     license="MIT",

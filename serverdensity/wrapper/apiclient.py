@@ -8,13 +8,15 @@ from serverdensity.wrapper.exceptions import HttpError
 from serverdensity.wrapper.exceptions import TimeoutError
 from serverdensity.wrapper.exceptions import ClientError
 
-from serverdensity.wrapper.device import Device
-from serverdensity.wrapper.service import Service
 from serverdensity.wrapper.alert import Alert
-from serverdensity.wrapper.user import User
+from serverdensity.wrapper.device import Device
+
 from serverdensity.wrapper.postback import Postback
 from serverdensity.wrapper.dashboard import Dashboard
 from serverdensity.wrapper.service_status import ServiceStatus
+from serverdensity.wrapper.service import Service
+from serverdensity.wrapper.user import User
+from serverdensity.wrapper.widgets import Widget
 
 
 class ApiClient(object):
@@ -36,7 +38,7 @@ class ApiClient(object):
         self._users = None
         self._postbacks = None
         self._dashboards = None
-
+        self._widgets = None
 
     @property
     def alerts(self):
@@ -92,7 +94,11 @@ class ApiClient(object):
             self._users = User(api=self)
         return self._users
 
-
+    @property
+    def widgets(self):
+        if not self._widgets:
+            self._widgets = Widget(api=self)
+        return self._widgets
 
 
     def _stringify_dict_list(self, data):

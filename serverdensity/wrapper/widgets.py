@@ -4,6 +4,8 @@ from serverdensity.wrapper.crud import CRUD
 
 class Widget(JsonObject, CRUD):
 
+    _schemapath = '/schema/widgets.json'
+
     PATHS = {
         'create': '/users/widgets',
         'delete': '/users/widgets/{}',

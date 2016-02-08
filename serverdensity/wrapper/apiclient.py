@@ -15,6 +15,7 @@ from serverdensity.wrapper.postback import Postback
 from serverdensity.wrapper.dashboard import Dashboard
 from serverdensity.wrapper.service_status import ServiceStatus
 from serverdensity.wrapper.service import Service
+from serverdensity.wrapper.tag import Tag
 from serverdensity.wrapper.user import User
 from serverdensity.wrapper.widgets import Widget
 
@@ -31,13 +32,15 @@ class ApiClient(object):
         if headers:
             self.headers.update(headers)
         self._session = Session()
-        self._devices = None
-        self._services = None
         self._alerts = None
-        self._service_status = None
-        self._users = None
-        self._postbacks = None
         self._dashboards = None
+        self._devices = None
+        self._postbacks = None
+        self._metrics = None
+        self._services = None
+        self._service_status = None
+        self._tags = None
+        self._users = None
         self._widgets = None
 
     @property
@@ -85,7 +88,7 @@ class ApiClient(object):
     @property
     def tags(self):
         if not self._tags:
-            self._tags = Tags(api=self)
+            self._tags = Tag(api=self)
         return self._tags
 
     @property

@@ -17,7 +17,7 @@ from serverdensity.wrapper import Metrics
 from serverdensity.wrapper import Postback
 from serverdensity.wrapper import Service
 from serverdensity.wrapper import ServiceStatus
-from serverdensity.wrapper import Tags
+from serverdensity.wrapper import Tag
 from serverdensity.wrapper import User
 
 from serverdensity.wrapper.exceptions import HttpError
@@ -84,11 +84,11 @@ class ApiTest(unittest.TestCase):
     def test_postbacks_property(self):
         isinstance(self.client.postbacks, Postback)
 
-    def test_tags_property(self):
-        isinstance(self.client.postbacks, Tags)
+    def test_tag_property(self):
+        isinstance(self.client.tags, Tag)
 
     def test_metrics_property(self):
-        isinstance(self.client.postbacks, Metrics)
+        isinstance(self.client.metrics, Metrics)
 
 
 if __name__ == '__main__':

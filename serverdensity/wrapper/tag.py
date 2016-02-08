@@ -2,7 +2,7 @@ from serverdensity.wrapper.crud import CRUD
 from serverdensity.wrapper.jsonobject import JsonObject
 
 
-class Tags(JsonObject, CRUD):
+class Tag(JsonObject, CRUD):
 
     _schemapath = '/schema/tags.json'
 

@@ -31,7 +31,8 @@
                     "type": "string",
                     "enum": ["Mac OSX", "Linux", "Windows", "FreeBSD"]
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "location": {
             "type": "object",
@@ -46,7 +47,7 @@
                     "type": "string"
                 }
             },
-            "required": ["countryCode", "text", "countryName"]
+            "additionalProperties": false
         },
         "tags": {
             "type": ["array", "null"],

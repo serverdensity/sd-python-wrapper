@@ -10,5 +10,5 @@ from serverdensity.wrapper.service_status import ServiceStatus
 from serverdensity.wrapper.tag import Tag
 from serverdensity.wrapper.user import User
 from serverdensity.wrapper.crud import CRUD
-from serverdensity.wrapper.widgets import Widget
+from serverdensity.wrapper.widget import Widget
 from serverdensity.wrapper.jsonobject import JsonObject

@@ -13,11 +13,12 @@ from serverdensity.wrapper.device import Device
 
 from serverdensity.wrapper.postback import Postback
 from serverdensity.wrapper.dashboard import Dashboard
+from serverdensity.wrapper.metrics import Metrics
 from serverdensity.wrapper.service_status import ServiceStatus
 from serverdensity.wrapper.service import Service
 from serverdensity.wrapper.tag import Tag
 from serverdensity.wrapper.user import User
-from serverdensity.wrapper.widgets import Widget
+from serverdensity.wrapper.widget import Widget
 
 
 class ApiClient(object):

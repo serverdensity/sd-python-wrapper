@@ -23,7 +23,7 @@ requirements = [
 
 test_requirements = [
     'bumpversion==0.5.3',
-    'wheel==0.24.0',
+    'wheel>=0.24.0',
     'flake8==2.4.1',
     'tox==2.1.1',
     'coverage==4.0',

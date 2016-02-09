@@ -119,6 +119,8 @@ class ApiClient(object):
             self.headers.update(kwargs['headers'])
         if data:
             data = self._stringify_dict_list(data)
+        if params:
+            params = self._stringify_dict_list(params)
 
         url = self.BASE_URL + self.VERSION + url
         req = Request(method, url, data=data, headers=self.headers, params=self.params)

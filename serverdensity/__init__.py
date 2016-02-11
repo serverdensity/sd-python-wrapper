@@ -3,6 +3,6 @@ from serverdensity.response import Response
 
 __author__ = 'Jonathan Sundqvist'
 __email__ = 'hello@serverdensity.com'
-__version__ = '0.1.17'
+__version__ = '0.1.18'
 
 

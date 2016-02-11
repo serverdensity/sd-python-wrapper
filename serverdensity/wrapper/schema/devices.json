@@ -29,7 +29,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "enum": ["Mac OSX", "Linux", "Windows", "FreeBSD"]
+                    "enum": ["Mac", "Linux", "Windows", "FreeBSD"]
                 }
             },
             "additionalProperties": false

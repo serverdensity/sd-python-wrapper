@@ -35,6 +35,9 @@ class JsonObjectTest(unittest.TestCase):
         self.TestObj._schemaobj = self.schema
         self.client = ApiClient('aeou')
 
+    def tearDown(self):
+        self.TestObj._schemaobj = None
+
     def test_instantiate_empty_jsonobject(self):
         obj = self.TestObj()
         self.assertEqual(isinstance(obj, JsonObject), True)

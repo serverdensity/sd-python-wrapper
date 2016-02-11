@@ -127,7 +127,8 @@
                 "isGroup": {
                     "type": "boolean"
                 }
-            }
+            },
+            "additionalProperties": false
         }
     },
     "properties": {
@@ -148,8 +149,9 @@
                 {"$ref": "#/definitions/serviceStatus"},
                 {"$ref": "#/definitions/openAlerts"}
             ]
-        },
+        }
+    },
     "required": [
-        "name", "dashboardId", "type", "config"
+        "dashboardId", "type", "config"
     ]
 }

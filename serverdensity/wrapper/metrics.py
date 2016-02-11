@@ -1,3 +1,5 @@
+import json
+
 from serverdensity.wrapper.jsonobject import JsonObject
 from serverdensity import Response
 
@@ -22,6 +24,6 @@ class Metrics(JsonObject):
     def get(self, _id, start, end, filtering, **kwargs):
         kwargs.setdefault('params', {})['start'] = start.isoformat()
         kwargs['params']['end'] = end.isoformat()
-        kwargs['params']['filter'] = filtering
+        kwargs['params']['filter'] = json.dumps(filtering)
         result = self.api.get(url=self.PATHS['get'].format(_id), **kwargs)
         return [Response(item) for item in result]

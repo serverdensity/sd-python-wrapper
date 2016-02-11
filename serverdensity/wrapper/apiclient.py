@@ -115,7 +115,6 @@ class ApiClient(object):
     def _make_request(self, method, url, data=None, params=None, **kwargs):
         if params:
             self.params.update(params)
-            params = self._stringify_dict_list(params)
         if kwargs.get('headers'):
             self.headers.update(kwargs['headers'])
         if data:

@@ -24,4 +24,4 @@ class Metrics(JsonObject):
         kwargs['params']['end'] = end.isoformat()
         kwargs['params']['filter'] = filtering
         result = self.api.get(url=self.PATHS['get'].format(_id), **kwargs)
-        return [Response(item for item in result)]
+        return [Response(item) for item in result]

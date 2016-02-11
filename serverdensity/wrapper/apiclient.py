@@ -115,12 +115,11 @@ class ApiClient(object):
     def _make_request(self, method, url, data=None, params=None, **kwargs):
         if params:
             self.params.update(params)
+            params = self._stringify_dict_list(params)
         if kwargs.get('headers'):
             self.headers.update(kwargs['headers'])
         if data:
             data = self._stringify_dict_list(data)
-        if params:
-            params = self._stringify_dict_list(params)
 
         url = self.BASE_URL + self.VERSION + url
         req = Request(method, url, data=data, headers=self.headers, params=self.params)
@@ -133,7 +132,16 @@ class ApiClient(object):
                     response.reason += ': {}'.format(response.json()['message'])
                 response.raise_for_status()
         except requests.HTTPError:
-            msg = '{} {}'.format(response.status_code, response.reason)
+            try:
+                description = response.json()['description']
+            except Exception:
+                description = ''
+
+            msg = '{} {}: {}'.format(
+                response.status_code,
+                response.reason,
+                description
+            )
             raise HttpError(msg)
         except requests.Timeout:
             raise TimeoutError('{} {} timed out after {} seconds'.format(

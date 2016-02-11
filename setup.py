@@ -7,6 +7,7 @@ try:
 except ImportError:
     from distutils.core import setup
 
+from setuptools import find_packages
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
@@ -39,20 +40,7 @@ setup(
     author="Jonathan Sundqvist",
     author_email='hello@serverdensity.com',
     url='https://github.com/serverdensity/sd-python-wrapper',
-    packages=[
-        'serverdensity',
-        'serverdensity.wrapper',
-        'response',
-        'schema'
-    ],
-    package_dir={
-        'response': 'serverdensity',
-        'schema': 'serverdensity'
-    },
-    package_data={
-        'schema': ['wrapper/schema/*.json'],
-        'response': ['response.py']
-    },
+    packages=find_packages(),
     include_package_data=True,
     install_requires=requirements,
     license="MIT",

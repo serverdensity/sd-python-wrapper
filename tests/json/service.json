@@ -8,6 +8,7 @@
     "checkLocations": [
         "dub"
     ],
+    "auth": null,
     "group": null,
     "headers": null,
     "type": "service",

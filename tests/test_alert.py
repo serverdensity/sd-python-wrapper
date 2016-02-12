@@ -72,8 +72,8 @@ class AlertTest(BaseTest):
         self.client._make_request.assert_called_with(
             data=None,
             method='GET',
-            url=Alert.PATHS['triggered'] + '/1',
-            params={'subjectType': 'device', 'closed': True}
+            url=Alert.PATHS['triggered'],
+            params={'filter': '{"config.subjectId": 1, "config.subjectType": "device", "fixed": true}'}
         )
 
     def test_alert_device_metrics(self):

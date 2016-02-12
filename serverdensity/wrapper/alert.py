@@ -1,3 +1,5 @@
+import json
+
 from serverdensity import Response
 from serverdensity.wrapper.crud import CRUD
 from serverdensity.wrapper.jsonobject import JsonObject
@@ -20,14 +22,18 @@ class Alert(JsonObject, CRUD):
     }
 
     def triggered(self, _id=None, subject_type=None, closed=None, **kwargs):
+        kwargs.setdefault('params', {})
         if _id and subject_type:
-            url = self.PATHS['triggered'] + '/{}'.format(_id)
-            kwargs.setdefault('params', {})['subjectType'] = subject_type
-        else:
-            url = self.PATHS
+            filter = {
+                'config.subjectType': subject_type,
+                'config.subjectId': _id
+            }
+            kwargs['params']['filter'] = filter
+
         if closed:
-            kwargs.setdefault('params', {})['closed'] = closed
-        result = self.api.get(url=url, **kwargs)
+            kwargs['params'].setdefault('filter', {})['fixed'] = closed
+        kwargs['params']['filter'] = json.dumps(kwargs['params']['filter'], sort_keys=True)
+        result = self.api.get(url=self.PATHS['triggered'], **kwargs)
         return [self.__class__(item) for item in result]
 
     def device_metrics(self, **kwargs):

@@ -29,13 +29,13 @@ class Alert(JsonObject, CRUD):
                 'config.subjectType': subject_type,
                 'config.subjectId': _id
             }
-            kwargs['params'].setdefault('filter', {}) = filter
+            kwargs['params']['filter'] = filter
 
         if closed:
             kwargs['params'].setdefault('filter', {})['fixed'] = closed
         kwargs['params']['filter'] = json.dumps(kwargs['params']['filter'], sort_keys=True)
         result = self.api.get(url=self.PATHS['triggered'], **kwargs)
-        return [self.__class__(item) for item in result]
+        return [Response(item) for item in result]
 
     def device_metrics(self, **kwargs):
         return Response(self.api.get(url=self.PATHS['device_metrics'], **kwargs))

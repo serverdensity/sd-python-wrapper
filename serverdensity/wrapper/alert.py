@@ -23,12 +23,13 @@ class Alert(JsonObject, CRUD):
 
     def triggered(self, _id=None, subject_type=None, closed=None, **kwargs):
         kwargs.setdefault('params', {})
+        kwargs['params'].setdefault('filter', {})
         if _id and subject_type:
             filter = {
                 'config.subjectType': subject_type,
                 'config.subjectId': _id
             }
-            kwargs['params']['filter'] = filter
+            kwargs['params'].setdefault('filter', {}) = filter
 
         if closed:
             kwargs['params'].setdefault('filter', {})['fixed'] = closed

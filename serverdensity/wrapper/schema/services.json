@@ -101,7 +101,8 @@
         "tags": {
             "type": ["array", "null"],
             "items": {
-                "type": "mongoId"
+                "type": "string",
+                "format": "mongoId"
             }
         }
     },

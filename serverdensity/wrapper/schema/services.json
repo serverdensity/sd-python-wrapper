@@ -81,7 +81,7 @@
             "required": ["username", "password"]
         },
         "headers": {
-            "type": ["object", "null"]
+            "type": ["array", "null"]
         },
         "body": {
             "type": "string"

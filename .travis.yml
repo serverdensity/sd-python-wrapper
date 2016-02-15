@@ -11,7 +11,7 @@ deploy:
   user: serverdensity
   skip_cleanup: true
 install:
-- pip install -r requirements.txt
+- pip install mock
 language: python
 matrix:
     include:

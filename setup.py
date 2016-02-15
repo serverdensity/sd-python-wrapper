@@ -16,20 +16,20 @@ with open('README.rst') as readme_file:
 #     history = history_file.read()
 
 requirements = [
-    'jsonschema==2.5.1',
-    'requests==2.9.1',
-    'isodate==0.5.4',
-    'pymongo==3.2'
+    'jsonschema',
+    'requests',
+    'isodate',
+    'pymongo'
 ]
 
 test_requirements = [
-    'bumpversion==0.5.3',
-    'wheel>=0.24.0',
-    'flake8==2.4.1',
-    'tox==2.1.1',
-    'coverage==4.0',
-    'cryptography==1.0.1',
-    'PyYAML==3.11',
+    'bumpversion',
+    'wheel',
+    'flake8',
+    'tox',
+    'coverage',
+    'cryptography',
+    'PyYAML',
 ]
 
 setup(

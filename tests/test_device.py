@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import unittest
+import json
 
 from mock import patch
 from serverdensity.wrapper import ApiClient
@@ -56,7 +57,7 @@ class DeviceTest(BaseTest):
             data=None,
             method='GET',
             url=Device.PATHS['search'],
-            params={'filter': filter_data}
+            params={'filter': json.dumps(filter_data)}
         )
 
     def test_device_update(self):

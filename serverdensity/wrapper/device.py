@@ -1,3 +1,4 @@
+import json
 from serverdensity.wrapper.jsonobject import JsonObject
 from serverdensity.wrapper.crud import CRUD
 
@@ -17,7 +18,7 @@ class Device(JsonObject, CRUD):
     }
 
     def search(self, filtering, **kwargs):
-        kwargs.setdefault('params', {})['filter'] = filtering
+        kwargs.setdefault('params', {})['filter'] = json.dumps(filtering)
         result = self.api.get(url=self.PATHS['search'], **kwargs)
         return [self.__class__(item) for item in result]
 

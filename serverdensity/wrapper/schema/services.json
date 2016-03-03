@@ -77,8 +77,7 @@
                 "password": {
                     "type": "string"
                 }
-            },
-            "required": ["username", "password"]
+            }
         },
         "headers": {
             "type": ["array", "null"]

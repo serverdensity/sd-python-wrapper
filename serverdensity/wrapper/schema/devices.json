@@ -38,13 +38,13 @@
             "type": "object",
             "properties": {
                 "countryCode": {
-                    "type": "string"
+                    "type": ["string", "null"]
                 },
                 "text": {
                     "type": "string"
                 },
                 "countryName": {
-                    "type": "string"
+                    "type": ["string", "null"]
                 }
             },
             "additionalProperties": false

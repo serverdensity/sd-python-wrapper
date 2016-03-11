@@ -89,8 +89,9 @@ class JsonObject(Mapping):
         try:
             self._validator.validate(self._data)
         except ValidationError as e:
+            path = ' > '.join(e.relative_schema_path)
             message = 'The schema {} gives the error: {}'.format(
-                e.relative_schema_path, e.message)
+                path, e.message)
             raise AttributeError(message)
 
     def __iter__(self):

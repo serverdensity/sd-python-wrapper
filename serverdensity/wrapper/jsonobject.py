@@ -2,6 +2,10 @@ try:
     from collections.abc import Mapping
 except ImportError:
     from collections import Mapping
+try:
+    unicode
+except NameError:
+    unicode = str
 import os.path
 import json
 
@@ -66,7 +70,7 @@ class JsonObject(Mapping):
     def api(self, value):
         if isinstance(value, serverdensity.wrapper.ApiClient):
             self._api = value
-        elif isinstance(value, str):
+        elif isinstance(value, str) or isinstance(value, unicode):
             self._api = serverdensity.wrapper.ApiClient(value)
         elif value is None:
             self._api = None

@@ -2,21 +2,8 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "title": "Services",
     "type": "object",
-    "properties": {
-        "name": {
-            "type": "string"
-        },
-        "checkType": {
-            "type": "string",
-            "enum": ["http", "tcp"]
-        },
-        "timeout": {
-            "type": "number"
-        },
-        "checkUrl": {
-            "type": "string"
-        },
-        "checkLocations": {
+    "definitions": {
+        "locations": {
             "type": "array",
             "items": {
                 "type": "string",
@@ -58,12 +45,25 @@
                 ]
             }
         },
-        "checkMethod": {
+        "name": {
+            "type": "string"
+        },
+        "checkType": {
             "type": "string",
-            "enum": ["GET", "POST", "PUT", "DELETE"]
+            "enum": ["http", "tcp"]
+        },
+        "timeout": {
+            "type": "number"
         },
         "slowThreshold": {
             "type": "number"
+        },
+        "tags": {
+            "type": ["array", "null"],
+            "items": {
+                "type": "string",
+                "format": "mongoId"
+            }
         },
         "group": {
             "type": ["string", "null"]
@@ -79,34 +79,68 @@
                 }
             }
         },
-        "headers": {
-            "type": ["array", "null"]
+        "tcp": {
+            "type": "object",
+            "properties": {
+                "name": { "$ref": "#/definitions/name" },
+                "checkType": { "$ref": "#/definitions/checkType" },
+                "timeout": { "$ref": "#/definitions/timeout" },
+                "checkLocations": { "$ref": "#/definitions/locations" },
+                "slowThreshold": { "$ref": "#/definitions/slowThreshold" },
+                "tags": { "$ref": "#/definitions/tags" },
+                "group": { "$ref": "#/definitions/group" },
+                "auth": { "$ref": "#/definitions/auth" },
+                "host": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name", "checkType", "timeout", "checkLocations",
+                "host", "port", "data"
+            ]
         },
-        "body": {
-            "type": "string"
-        },
-        "validateCert": {
-            "type": "boolean"
-        },
-        "host": {
-            "type": "string"
-        },
-        "port": {
-            "type": "string"
-        },
-        "data": {
-            "type": "string"
-        },
-        "tags": {
-            "type": ["array", "null"],
-            "items": {
-                "type": "string",
-                "format": "mongoId"
-            }
+        "http": {
+            "type": "object",
+            "properties": {
+                "name": { "$ref": "#/definitions/name" },
+                "checkType": { "$ref": "#/definitions/checkType" },
+                "timeout": { "$ref": "#/definitions/timeout" },
+                "checkLocations": { "$ref": "#/definitions/locations" },
+                "slowThreshold": { "$ref": "#/definitions/slowThreshold" },
+                "tags": { "$ref": "#/definitions/tags" },
+                "group": { "$ref": "#/definitions/group" },
+                "auth": { "$ref": "#/definitions/auth" },
+                "checkMethod": {
+                    "type": "string",
+                    "enum": ["GET", "POST", "PUT", "DELETE"]
+                },
+                "checkUrl": {
+                    "type": "string"
+                },
+                "body": {
+                    "type": "string"
+                },
+                "validateCert": {
+                    "type": "boolean"
+                },
+                "headers": {
+                  "type": ["array", "null"]
+                }
+            },
+            "required": [
+                "name", "checkType", "timeout", "checkUrl", "checkLocations",
+                "checkMethod", "slowThreshold"
+            ]
         }
     },
-    "required": [
-        "name", "checkType", "timeout", "checkUrl", "checkLocations", "checkMethod",
-        "slowThreshold"
+    "oneOf": [
+        {"$ref": "#/definitions/http"},
+        {"$ref": "#/definitions/tcp"}
     ]
 }

@@ -34,7 +34,7 @@ test_requirements = [
 
 setup(
     name='sd-python-wrapper',
-    version='0.1.31',
+    version='0.1.32',
     description="A python wrapper for the Server Density Api",
     long_description=readme + '\n\n', # + history,
     author="Jonathan Sundqvist",

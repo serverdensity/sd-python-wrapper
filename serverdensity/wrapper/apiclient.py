@@ -2,6 +2,7 @@
 import json
 
 from requests import Session, Request
+from requests.adapters import HTTPAdapter
 import requests
 from serverdensity import __version__
 from serverdensity.wrapper.exceptions import HttpError
@@ -125,6 +126,7 @@ class ApiClient(object):
         prepped = req.prepare()
 
         try:
+            self._session.mount('https://', HTTPAdapter(max_retries=3))
             response = self._session.send(prepped, timeout=self.timeout)
             if response.status_code > 299:
                 if 'message' in str(response.content):

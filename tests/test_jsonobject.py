@@ -68,6 +68,13 @@ class JsonObjectTest(unittest.TestCase):
         with self.assertRaises(AttributeError):
             self.TestObj(_id='test')
 
+        with self.assertRaises(AttributeError):
+            self.TestObj(_id=123)
+
+        with self.assertRaises(AttributeError):
+            # 24 chars, but not mongoId
+            self.TestObj(_id='ss1212121212121212121212')
+
         with self.assertRaisesRegexp(AttributeError, 'mongoId'):
             self.TestObj(_id='test')
 

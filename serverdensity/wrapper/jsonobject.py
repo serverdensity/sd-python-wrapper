@@ -8,21 +8,37 @@ except NameError:
     unicode = str
 import os.path
 import json
+import sys
 
 from jsonschema import Draft4Validator
 from jsonschema import FormatChecker
 from jsonschema.compat import str_types
 from jsonschema.exceptions import ValidationError
-from bson.objectid import ObjectId
 
 import serverdensity
+
+PY3 = sys.version_info[0] == 3
 
 
 @FormatChecker.cls_checks(format='mongoId', raises=())
 def is_mongoid(instance):
     if not isinstance(instance, str_types):
         return True
-    return ObjectId.is_valid(instance)
+    if len(instance) == 24:
+        if PY3:
+            try:
+                bytes.fromhex(instance)
+            except ValueError:
+                return False
+        else:
+            try:
+                instance.decode('hex')
+            except TypeError:
+                return False
+    else:
+        return False
+
+    return True
 
 FORMATCHECKER = FormatChecker()
 

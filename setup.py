@@ -18,8 +18,7 @@ with open('README.rst') as readme_file:
 requirements = [
     'jsonschema',
     'requests',
-    'isodate',
-    'pymongo'
+    'isodate'
 ]
 
 test_requirements = [

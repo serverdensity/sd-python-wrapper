@@ -72,6 +72,16 @@ class DeviceTest(BaseTest):
             params={'filter': json.dumps(filter_data)}
         )
 
+    def test_device_groups(self):
+        self.client._make_request.return_value = [self.deviceobj]
+        self.device.groups()
+        self.client._make_request.assert_called_with(
+            data=None,
+            method='GET',
+            url=Device.PATHS['groups'],
+            params=None
+        )
+
     def test_device_update(self):
         data = {'name': 'test', 'type': 'device'}
         self.device.update(_id=1, data=data)

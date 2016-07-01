@@ -50,6 +50,16 @@ class ServiceTest(BaseTest):
             params=None
         )
 
+    def test_service_groups(self):
+        self.client._make_request.return_value = [self.serviceobj]
+        self.service.groups()
+        self.client._make_request.assert_called_with(
+            data=None,
+            method='GET',
+            url=Service.PATHS['groups'],
+            params=None
+        )
+
     def test_service_search(self):
         self.client._make_request.return_value = [self.serviceobj]
         filter_data = {'name': 'test', 'type': 'service'}

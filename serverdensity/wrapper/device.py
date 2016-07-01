@@ -14,7 +14,8 @@ class Device(JsonObject, CRUD):
         'search': '/inventory/resources',
         'update': '/inventory/devices/{}',
         'view_by_agent': '/inventory/devices/{}/byagentkey',
-        'view': '/inventory/devices/{}'
+        'view': '/inventory/devices/{}',
+        'groups': '/inventory/devices/groups'
     }
 
     def search(self, filtering, **kwargs):
@@ -24,3 +25,6 @@ class Device(JsonObject, CRUD):
 
     def view_by_agent(self, agentkey, **kwargs):
         return self.__class__(self.api.get(url=self.PATHS['view_by_agent'].format(agentkey), **kwargs))
+
+    def groups(self, **kwargs):
+        return self.api.get(url=self.PATHS['groups'])

@@ -111,14 +111,24 @@ class ApiClient(object):
                 data[key] = json.dumps(value)
         return dict(data)
 
+    def _clean_out_old_params(self):
+        for param in list(self.params):
+            if param != 'token':
+                del self.params[param]
+
     def _make_request(self, method, url, data=None, params=None, **kwargs):
         valid_query_params = [
             'perPage',
-            'page'
+            'page',
+            'fields'
         ]
+
+        self._clean_out_old_params()
 
         for param in valid_query_params:
             if kwargs.get(param):
+                if isinstance(kwargs[param], dict) or isinstance(kwargs[param], list):
+                    kwargs[param] = json.dumps(kwargs[param])
                 self.params[param] = kwargs[param]
 
         if params:

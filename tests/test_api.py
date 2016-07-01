@@ -64,6 +64,22 @@ class ApiTest(unittest.TestCase):
         self.assertIn('perPage', self.client.params)
         self.assertIn('page', self.client.params)
 
+    def test_kwargs_with_field_param(self):
+        self.client._make_request('GET', '/test', fields=['name', '_id'])
+        self.assertIn('fields', self.client.params)
+        self.assertEquals(self.client.params['fields'], '["name", "_id"]')
+
+    def test_kwargs_with_field_which_is_dict(self):
+        self.client._make_request('GET', '/test', fields={'name': '_id'})
+        self.assertIn('fields', self.client.params)
+        self.assertEquals(self.client.params['fields'], '{"name": "_id"}')
+
+    def test_params_is_cleaned_out_for_new_request(self):
+        self.client._make_request('GET', '/test', perPage='10', page='4')
+        self.assertIn('perPage', self.client.params)
+        self.client._make_request('GET', '/test')
+        self.assertNotIn('perPage', self.client.params)
+
     def test_response_returns_json(self):
         self.client._make_request('GET', '/test')
         self.assertEqual(self.mock_response.json.call_count, 1)

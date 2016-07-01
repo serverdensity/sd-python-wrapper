@@ -59,6 +59,11 @@ class ApiTest(unittest.TestCase):
         with self.assertRaises(ClientError):
             self.client._make_request('GET', '/test')
 
+    def test_kwargs_with_query_params(self):
+        self.client._make_request('GET', '/test', perPage='10', page='4')
+        self.assertIn('perPage', self.client.params)
+        self.assertIn('page', self.client.params)
+
     def test_response_returns_json(self):
         self.client._make_request('GET', '/test')
         self.assertEqual(self.mock_response.json.call_count, 1)

@@ -105,15 +105,22 @@ class ApiClient(object):
             self._widgets = Widget(api=self)
         return self._widgets
 
-
     def _stringify_dict_list(self, data):
         for key, value in data.items():
             if isinstance(value, dict) or isinstance(value, list):
                 data[key] = json.dumps(value)
         return dict(data)
 
-
     def _make_request(self, method, url, data=None, params=None, **kwargs):
+        valid_query_params = [
+            'perPage',
+            'page'
+        ]
+
+        for param in valid_query_params:
+            if kwargs.get(param):
+                self.params[param] = kwargs[param]
+
         if params:
             self.params.update(params)
         if kwargs.get('headers'):

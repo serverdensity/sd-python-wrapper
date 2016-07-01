@@ -49,6 +49,18 @@ class DeviceTest(BaseTest):
             params=None
         )
 
+    def test_device_list_per_page(self):
+        self.client._make_request.return_value = [self.deviceobj]
+        self.device.list(perPage=10, page=4)
+        self.client._make_request.assert_called_with(
+            data=None,
+            method='GET',
+            url=Device.PATHS['list'],
+            params=None,
+            perPage=10,
+            page=4
+        )
+
     def test_device_search(self):
         self.client._make_request.return_value = [self.deviceobj]
         filter_data = {'name': 'test', 'type': 'device'}

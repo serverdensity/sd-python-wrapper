@@ -67,6 +67,15 @@ class DashboardTest(BaseTest):
             params=None
         )
 
+    def test_dashboard_duplicate(self):
+        self.dashboard.duplicate(1)
+        self.client._make_request.assert_called_with(
+            data=None,
+            method='POST',
+            url=Dashboard.PATHS['duplicate'].format(1),
+            params=None
+        )
+
 if __name__ == '__main__':
     import sys
     sys.exit(unittest.main())

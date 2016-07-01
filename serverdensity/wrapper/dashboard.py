@@ -11,5 +11,11 @@ class Dashboard(JsonObject, CRUD):
         'delete': '/users/dashboards/{}',
         'list': '/users/dashboards',
         'update': '/users/dashboards/{}',
-        'view': '/users/dashboards/{}'
+        'view': '/users/dashboards/{}',
+        'duplicate': '/users/dashboards/{}'
     }
+
+    def duplicate(self, _id=None, **kwargs):
+        if not _id:
+            _id = self._id
+        return self.__class__(self.api.post(url=self.PATHS['duplicate'].format(_id)))

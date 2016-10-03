@@ -4,12 +4,11 @@
     "type": "object",
     "properties": {
         "subjectId": {
-            "type": "string",
-            "format": "mongoId"
+            "type": "string"
         },
         "subjectType": {
             "type": "string",
-            "enum": ["device", "service"]
+            "enum": ["device", "service","deviceGroup","serviceGroup"]
         },
         "subject": {
             "type": ["string", "null"]
@@ -18,17 +17,12 @@
             "type": "boolean"
         },
         "section": {
-            "type": "string"
         },
         "field": {
-            "type": "string"
         },
         "comparison": {
-            "type": "string",
-            "enum": ["lt", "gt", "lte", "gte", "eq", "neq", "c", "nc", "re", "nre"]
         },
         "value": {
-            "type": "string"
         },
         "fix": {
             "type": "boolean"
@@ -43,11 +37,10 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["user", "pagerduty", "webhook"]
+                        "enum": ["user", "pagerduty", "webhook","hipchat"]
                     },
                     "id": {
-                        "type": "string",
-                        "format": "mongoId"
+                        "type": "string"
                     },
                     "actions": {
                         "type": "array",
@@ -78,7 +71,7 @@
                 },
                 "displayUnits": {
                     "type": "string",
-                    "enum": ["s"]
+                    "enum": ["s","m"]
                 }
             },
             "required": ["seconds", "enabled", "displayUnits"]
@@ -94,14 +87,13 @@
                 },
                 "displayUnits": {
                     "type": "string",
-                    "enum": ["s"]
+                    "enum": ["s","m"]
                 }
             },
             "required": ["seconds", "enabled", "displayUnits"]
         }
     },
     "required": [
-        "subjectId",
         "subjectType",
         "subject",
         "enabled",

@@ -47,7 +47,10 @@
             "type": "object",
             "properties": {
                 "name": { "$ref": "#/definitions/name" },
-                "checkType": { "$ref": "#/definitions/checkType" },
+                "checkType": {                     
+                    "type": "string",
+                    "enum": "tcp"
+                },
                 "timeout": { "$ref": "#/definitions/timeout" },
                 "checkLocations": { "$ref": "#/definitions/locations" },
                 "slowThreshold": { "$ref": "#/definitions/slowThreshold" },
@@ -73,7 +76,10 @@
             "type": "object",
             "properties": {
                 "name": { "$ref": "#/definitions/name" },
-                "checkType": { "$ref": "#/definitions/checkType" },
+                "checkType": {                     
+                    "type": "string",
+                    "enum": "http"
+                },
                 "timeout": { "$ref": "#/definitions/timeout" },
                 "checkLocations": { "$ref": "#/definitions/locations" },
                 "slowThreshold": { "$ref": "#/definitions/slowThreshold" },

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+from serverdensity import __version__
 
 try:
     from setuptools import setup
@@ -33,7 +33,7 @@ test_requirements = [
 
 setup(
     name='sd-python-wrapper',
-    version='0.1.35',
+    version=__version__,
     description="A python wrapper for the Server Density Api",
     long_description=readme + '\n\n', # + history,
     author="Jonathan Sundqvist",

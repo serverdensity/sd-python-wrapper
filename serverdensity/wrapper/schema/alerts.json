@@ -37,7 +37,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["user", "pagerduty", "webhook","hipchat"]
+                        "enum": ["user", "pagerduty", "webhook","hipchat","slack"]
                     },
                     "id": {
                         "type": "string"

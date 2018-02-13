@@ -3,8 +3,8 @@
     "title": "Alerts",
     "type": "object",
     "properties": {
-        "subjectId": {
-            "type": "string"
+        "tags": {
+            "type": "array"
         },
         "subjectType": {
             "type": "string",
@@ -17,8 +17,6 @@
             "type": "boolean"
         },
         "section": {
-        },
-        "field": {
         },
         "comparison": {
         },
@@ -94,8 +92,6 @@
         }
     },
     "required": [
-        "subjectType",
-        "subject",
         "enabled",
         "section",
         "field",

@@ -10,12 +10,12 @@ class Alert(JsonObject, CRUD):
     _schemapath = '/schema/alerts.json'
 
     PATHS = {
-        'create': '/alerts/configs',
-        'delete': '/alerts/configs/{}',
-        'list': '/alerts/configs',
-        'list_by_subject': '/alerts/configs/{}',
-        'update': '/alerts/configs/{}',
-        'view': '/alerts/configs/{}',
+        'create': '/alerts/v3/configs/',
+        'delete': '/alerts/v3/configs/{}',
+        'list': '/alerts/v3/configs/',
+        'list_by_subject': '/alerts/v3/configs/{}',
+        'update': '/alerts/v3/configs/{}',
+        'view': '/alerts/v3/configs/{}',
         'triggered': '/alerts/triggered',
         'device_metrics': '/alerts/device_alerts.json',
         'service_metrics': '/alerts/service_alerts.json'

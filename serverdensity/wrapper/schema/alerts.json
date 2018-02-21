@@ -4,7 +4,14 @@
     "type": "object",
     "properties": {
         "tags": {
-            "type": "array"
+            "type": "object",
+            "patternProperties": {
+                "^.*$": {
+                    "anyOf": [
+                        {"type": "string"},
+                    ]
+                }
+            },
         },
         "subjectType": {
             "type": "string",
@@ -35,7 +42,7 @@
                 "properties": {
                     "type": {
                         "type": "string",
-                        "enum": ["user", "pagerduty", "webhook","hipchat"]
+                        "enum": ["user", "pagerduty", "webhook","hipchat","tag"]
                     },
                     "id": {
                         "type": "string"
@@ -93,10 +100,6 @@
     },
     "required": [
         "enabled",
-        "section",
-        "field",
-        "comparison",
-        "value",
         "recipients",
         "wait",
         "repeat",

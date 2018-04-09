@@ -15,15 +15,15 @@ class Metrics(JsonObject):
         """Not needed"""
         pass
 
-    def available(self, start, end, **kwargs):
+    def available(self, _id, start, end, **kwargs):
         kwargs.setdefault('params', {})['start'] = start.isoformat()
         kwargs['params']['end'] = end.isoformat()
-        result = self.api.get(url=self.PATHS['available'], **kwargs)
+        result = self.api.get(url=self.PATHS['available'].format(_id), **kwargs)
         return [Response(item) for item in result]
 
-    def get(self, start, end, filtering, **kwargs):
+    def get(self, _id, start, end, filtering, **kwargs):
         kwargs.setdefault('params', {})['start'] = start.isoformat()
         kwargs['params']['end'] = end.isoformat()
         kwargs['params']['filter'] = json.dumps(filtering)
-        result = self.api.get(url=self.PATHS['get'], **kwargs)
+        result = self.api.get(url=self.PATHS['get'].format(_id), **kwargs)
         return [Response(item) for item in result]

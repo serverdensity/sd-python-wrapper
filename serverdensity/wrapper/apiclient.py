@@ -139,12 +139,16 @@ class ApiClient(object):
             data = self._stringify_dict_list(data)
 
         url = self.BASE_URL + self.VERSION + url
+        print url, data, self.params, self.headers, "1st print"
         req = Request(method, url, data=data, headers=self.headers, params=self.params)
         prepped = req.prepare()
+        print req.url
+        print prepped.url
 
         try:
             self._session.mount('https://', HTTPAdapter(max_retries=3))
             response = self._session.send(prepped, timeout=self.timeout)
+            print response.text
             if response.status_code > 299:
                 if 'message' in str(response.content):
                     response.reason += ': {}'.format(response.json()['message'])
@@ -168,9 +172,10 @@ class ApiClient(object):
         except requests.ConnectionError as e:
             raise ClientError('Could not reach: {} {} {}'.format(method, url, e))
 
-        return response.json()
+        return response.status_code
 
     def get(self, url, data=None, params=None, **kwargs):
+        print url, data, params, "2nd print"
         resp = self._make_request(method='GET', url=url, data=data, params=params, **kwargs)
         return resp
 

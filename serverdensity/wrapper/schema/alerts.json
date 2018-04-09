@@ -3,16 +3,6 @@
     "title": "Alerts",
     "type": "object",
     "properties": {
-        "tags": {
-            "type": "object",
-            "patternProperties": {
-                "^.*$": {
-                    "anyOf": [
-                        {"type": "string"},
-                    ]
-                }
-            },
-        },
         "subjectType": {
             "type": "string",
             "enum": ["device", "service","deviceGroup","serviceGroup"]
@@ -88,7 +78,7 @@
                     "type": "number"
                 },
                 "enabled": {
-                    "type": "boolean"
+                    "type": ["string", "boolean" ]
                 },
                 "displayUnits": {
                     "type": "string",
@@ -99,10 +89,7 @@
         }
     },
     "required": [
-        "enabled",
-        "recipients",
-        "wait",
-        "repeat",
-        "fix"
+        "scope"
+
     ]
 }

@@ -96,6 +96,7 @@ class JsonObject(Mapping):
     def _set_schemaobj(self, path):
         path = os.path.dirname(__file__) + self._schemapath
         with open(path, 'r') as f:
+            print f
             self._schemaobj = json.load(f)
 
     def _validation(self, data):
@@ -107,6 +108,7 @@ class JsonObject(Mapping):
                 format_checker=FORMATCHECKER
             )
         try:
+            print self._data["_id"]
             self._validator.validate(self._data)
         except ValidationError as e:
             path = ' > '.join(e.relative_schema_path)

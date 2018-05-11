@@ -172,7 +172,7 @@ class ApiClient(object):
         except requests.ConnectionError as e:
             raise ClientError('Could not reach: {} {} {}'.format(method, url, e))
 
-        return response.status_code
+        return response.json()
 
     def get(self, url, data=None, params=None, **kwargs):
         print url, data, params, "2nd print"

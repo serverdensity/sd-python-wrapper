@@ -7,23 +7,22 @@ from serverdensity import Response
 class Metrics(JsonObject):
 
     PATHS = {
-        'available': '/metrics/v3/metrics/{}',
-        'get': '/metrics/v3/query/{}'
+        'available': '/metrics/v3/metrics/',
+        'get': '/metrics/v3/query/'
     }
 
     def _validation(self, value):
         """Not needed"""
         pass
 
-    def available(self, _id, start, end, **kwargs):
-        kwargs.setdefault('params', {})['start'] = start.isoformat()
-        kwargs['params']['end'] = end.isoformat()
-        result = self.api.get(url=self.PATHS['available'].format(_id), **kwargs)
-        return [Response(item) for item in result]
+    def available(self, **kwargs):
+        kwargs.setdefault('params', {})['page'] = "1"
+        result = self.api.get(url=self.PATHS['available'], **kwargs)
+        return result
 
-    def get(self, _id, start, end, filtering, **kwargs):
-        kwargs.setdefault('params', {})['start'] = start.isoformat()
-        kwargs['params']['end'] = end.isoformat()
-        kwargs['params']['filter'] = json.dumps(filtering)
-        result = self.api.get(url=self.PATHS['get'].format(_id), **kwargs)
-        return [Response(item) for item in result]
+    def get(self, start, end, requests, **kwargs):
+        kwargs.setdefault('params', {})['start'] = start
+        kwargs['params']['end'] = end
+        kwargs['params']['requests'] = json.dumps(requests)
+        result = self.api.get(url=self.PATHS['get'], **kwargs)
+        return [Response(item) for item in result['series']]
